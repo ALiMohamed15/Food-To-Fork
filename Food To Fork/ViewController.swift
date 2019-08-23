@@ -15,24 +15,33 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var collection: UICollectionView!
 
-    let apiKey:String = "Key"
+    let apiKey:String = "c34e5bd22e22eb9b4250014a38dbb85d"
     let RecepiesURL:String = "https://www.food2fork.com/api/search"
     
+    @IBOutlet weak var SearchBar: UISearchBar!
     
     var prams : [String : String] = [:]
     
+    var q = ""
     var titleArray = [String]()
     var imageURLArray = [String]()
     var puplisherArray = [String]()
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        prams = ["key" : apiKey]
-        getData(withURL: RecepiesURL, parameters: prams)
-
+       
+        makeRequest()
+        
+        SearchBar.delegate = self
     }
     
+    func makeRequest(){
+        
+        prams = ["key" : apiKey , "q" : q ]
+        getData(withURL: RecepiesURL, parameters: prams)
+        
+    }
     
     // MARK : Request Data From API Method
 
@@ -58,16 +67,43 @@ class ViewController: UIViewController {
         let titles = json["recipes"].arrayValue.map {$0["title"].stringValue}
         let images = json["recipes"].arrayValue.map {$0["image_url"].stringValue}
         let ingred = json["recipes"].arrayValue.map {$0["publisher"].stringValue}
+        
         imageURLArray = images
         titleArray = titles
         puplisherArray = ingred
         collection.reloadData()
     }
     
+}
+
+
+
+extension ViewController : UISearchBarDelegate {
     
-    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if let text = searchBar.text {
+            q = text
+            makeRequest()
+            
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
+            }
+        }
+    }
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if searchBar.text?.count == 0 {
+            DispatchQueue.main.async {
+                self.q = ""
+                searchBar.resignFirstResponder()
+                self.makeRequest()
+            }
+        }
+    }
     
 }
+
 
 
 // MARK: Set up CollectionView
@@ -83,7 +119,7 @@ extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CELL", for: indexPath)as! CellVC
         
-        cell.image.sd_setImage(with: URL(string: imageURLArray[indexPath.row]), placeholderImage: nil)
+        cell.image.sd_setImage(with: URL(string: imageURLArray[indexPath.row]), placeholderImage: UIImage(named: "Food Icon"))
         
         cell.title.text = titleArray[indexPath.row]
         cell.publisher.text = puplisherArray[indexPath.row]

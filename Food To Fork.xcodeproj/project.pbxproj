@@ -14,6 +14,7 @@
 		81263ECD230D9BDF003E5207 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81263ECC230D9BDF003E5207 /* Assets.xcassets */; };
 		81263ED0230D9BDF003E5207 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81263ECE230D9BDF003E5207 /* LaunchScreen.storyboard */; };
 		81263ED8230DC3CF003E5207 /* CellVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81263ED7230DC3CF003E5207 /* CellVC.swift */; };
+		8198C3CA230F6F5C0031FDF0 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8198C3C9230F6F5C0031FDF0 /* DetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		81263ECF230D9BDF003E5207 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		81263ED1230D9BDF003E5207 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		81263ED7230DC3CF003E5207 /* CellVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellVC.swift; sourceTree = "<group>"; };
+		8198C3C9230F6F5C0031FDF0 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		A59EAD68157A43CD48BD2E4B /* Pods-Food To Fork.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Food To Fork.debug.xcconfig"; path = "Target Support Files/Pods-Food To Fork/Pods-Food To Fork.debug.xcconfig"; sourceTree = "<group>"; };
 		EFAAD6A3700C3F39FD06C7ED /* Pods-Food To Fork.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Food To Fork.release.xcconfig"; path = "Target Support Files/Pods-Food To Fork/Pods-Food To Fork.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -74,6 +76,7 @@
 				81263EC5230D9BD7003E5207 /* AppDelegate.swift */,
 				81263EC7230D9BD7003E5207 /* ViewController.swift */,
 				81263ED7230DC3CF003E5207 /* CellVC.swift */,
+				8198C3C9230F6F5C0031FDF0 /* DetailsViewController.swift */,
 				81263EC9230D9BD7003E5207 /* Main.storyboard */,
 				81263ECC230D9BDF003E5207 /* Assets.xcassets */,
 				81263ECE230D9BDF003E5207 /* LaunchScreen.storyboard */,
@@ -209,6 +212,7 @@
 				81263EC8230D9BD7003E5207 /* ViewController.swift in Sources */,
 				81263EC6230D9BD7003E5207 /* AppDelegate.swift in Sources */,
 				81263ED8230DC3CF003E5207 /* CellVC.swift in Sources */,
+				8198C3CA230F6F5C0031FDF0 /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
