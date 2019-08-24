@@ -26,7 +26,7 @@ class ViewController: UIViewController {
     var titleArray = [String]()
     var imageURLArray = [String]()
     var puplisherArray = [String]()
-    
+    var rid = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,7 +67,9 @@ class ViewController: UIViewController {
         let titles = json["recipes"].arrayValue.map {$0["title"].stringValue}
         let images = json["recipes"].arrayValue.map {$0["image_url"].stringValue}
         let ingred = json["recipes"].arrayValue.map {$0["publisher"].stringValue}
+        let recipiesID = json["recipes"].arrayValue.map {$0["recipe_id"].stringValue}
         
+        rid = recipiesID
         imageURLArray = images
         titleArray = titles
         puplisherArray = ingred
@@ -77,6 +79,8 @@ class ViewController: UIViewController {
 }
 
 
+
+//MARK: Search Bar Methodes
 
 extension ViewController : UISearchBarDelegate {
     
@@ -126,5 +130,14 @@ extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate {
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let vc = storyboard?.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
+        
+        vc.recipeID = rid[indexPath.row]
+        
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     
+
 }
