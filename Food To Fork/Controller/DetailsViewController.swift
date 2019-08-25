@@ -12,14 +12,14 @@ import SwiftyJSON
 import SDWebImage
 
 class DetailsViewController: UIViewController {
-    let apiKey:String = "c34e5bd22e22eb9b4250014a38dbb85d"
-    let RecepiesURL:String = "https://www.food2fork.com/api/get"
-    
+   
     @IBOutlet weak var recipeTitle: UILabel!
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var rank: UILabel!
     @IBOutlet weak var tableview: UITableView!
+    @IBOutlet weak var saveButton: UIButton!
     
+    var shouldSave = false
     
     var imageURL = ""
     var recipeID = ""
@@ -30,32 +30,19 @@ class DetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       makeRequest()
+        cellHeightForRow()
+        stylingMethode()
+        makeRequest()
+        
     }
     
     
     // MARK : make request method
     func makeRequest(){
         
-        prams = ["key" : apiKey , "rId" : recipeID ]
-        getData(withURL: RecepiesURL, parameters: prams)
-        
-    }
-    
-    // MARK : Request Data From API Method
-    func getData(withURL url:String , parameters : [String:String]) {
-        
-        Alamofire.request(url , method: .get , parameters : parameters).responseJSON { response in
-            if response.result.isSuccess{
-                
-                print("Success!!")
-                let json : JSON = JSON(response.result.value!)
-                self.UpdateJSONdata(with: json)
-                 print(json)
-            }else{
-                
-                print("Request failed \(String(describing: response.result.error))")
-            }
+        prams = ["key" : Requests.Key , "rId" : recipeID ]
+        Requests.sharedInstance.getData(withURL: Requests.GetUrl, parameters: prams) { (JSON) in
+            self.UpdateJSONdata(with: JSON)
         }
     }
     
@@ -79,9 +66,29 @@ class DetailsViewController: UIViewController {
     func loadImage(){
         
         recipeImage.sd_setImage(with: URL(string: imageURL), placeholderImage: UIImage(named: "Food Icon"))
+    }
+    
+    func stylingMethode() {
+        
+        recipeImage.layer.cornerRadius = 7
+        rank.layer.cornerRadius = 7
+        
         
     }
    
+    
+    @IBAction func Save(_ sender: UIButton) {
+        
+        if shouldSave == false {
+            saveButton.setImage(UIImage(named: "Bookmarked"), for: .normal)
+            shouldSave = true
+        }else {
+            saveButton.setImage(UIImage(named: "Bookmark"), for: .normal)
+            shouldSave = false
+        }
+        print("saved")
+    }
+    
 }
 
 
@@ -103,8 +110,8 @@ extension DetailsViewController : UITableViewDelegate , UITableViewDataSource {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 90
+    func cellHeightForRow() {
+        tableview.rowHeight = UITableView.automaticDimension
+        tableview.estimatedRowHeight = 60
     }
-    
 }

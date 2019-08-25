@@ -9,5 +9,6 @@ target 'Food To Fork' do
 pod'SwiftyJSON'
 pod'Alamofire'
 pod 'SDWebImage'
+pod "ESTabBarController-swift"
 
 end
