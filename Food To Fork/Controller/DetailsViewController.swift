@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import SDWebImage
+import RealmSwift
 
 class DetailsViewController: UIViewController {
    
@@ -21,11 +22,19 @@ class DetailsViewController: UIViewController {
     
     var shouldSave = false
     
-    var imageURL = ""
     var recipeID = ""
     
     var prams : [String : String] = [:]
+    
+    
+    
     var ingreds = [String]()
+    var recTitle = ""
+    var recRank = ""
+    var imageURL = ""
+    
+    
+    let realm = try! Realm()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +44,6 @@ class DetailsViewController: UIViewController {
         makeRequest()
         
     }
-    
     
     // MARK : make request method
     func makeRequest(){
@@ -49,48 +57,72 @@ class DetailsViewController: UIViewController {
     // MARK: JSON Data Method
     func UpdateJSONdata(with json:JSON) {
         
-        rank.text = json["recipe"]["social_rank"].stringValue
-        let ingredes = json["recipe"]["ingredients"].arrayValue
-        recipeTitle.text = json["recipe"]["title"].stringValue
+        recRank = json["recipe"]["social_rank"].stringValue
+        recTitle = json["recipe"]["title"].stringValue
         imageURL = json["recipe"]["image_url"].stringValue
+        let ingredes = json["recipe"]["ingredients"].arrayValue
         
         for i in ingredes.indices {
             ingreds.append(ingredes[i].stringValue)
         }
-        
-        loadImage()
+        updateUI()
         tableview.reloadData()
     }
     
-    //MARK : load Image from URL method
-    func loadImage(){
+    //MARK : Upted UI Method
+    func updateUI() {
         
+        rank.text = recRank
+        recipeTitle.text = recTitle
         recipeImage.sd_setImage(with: URL(string: imageURL), placeholderImage: UIImage(named: "Food Icon"))
+    }
+    
+    //    MARK: Save button pressed 
+    @IBAction func Save(_ sender: UIButton) {
+        
+        let saveRecipe = Recipe()
+        new(recipe: saveRecipe)
+        
+        if shouldSave == false {
+            saveButton.setImage(UIImage(named: "Bookmarked"), for: .normal)
+            shouldSave = true
+            save(recipe : saveRecipe)
+            print("SAVED!")
+            print(saveRecipe.title)
+            saveButton.isEnabled = false
+        }
+    }
+    
+    //    MARK: adding recipe properties
+    func new(recipe : Recipe){
+        
+        recipe.rank = recRank
+        recipe.title = recTitle
+        recipe.image = imageURL
+       
+        for i in ingreds.indices {
+            recipe.ingerdients.append(ingreds[i])
+        }
+    }
+    
+    //    MARK: saving to realm
+    func save(recipe : Recipe) {
+        do {
+            try realm.write {
+                realm.add(recipe)
+            }
+        } catch {
+            print("error saving objecct to Realm \(error)")
+        }
     }
     
     func stylingMethode() {
         
         recipeImage.layer.cornerRadius = 7
         rank.layer.cornerRadius = 7
-        
-        
-    }
-   
-    
-    @IBAction func Save(_ sender: UIButton) {
-        
-        if shouldSave == false {
-            saveButton.setImage(UIImage(named: "Bookmarked"), for: .normal)
-            shouldSave = true
-        }else {
-            saveButton.setImage(UIImage(named: "Bookmark"), for: .normal)
-            shouldSave = false
-        }
-        print("saved")
     }
     
 }
-
 
 
 //MARK : Set up tableview methodes
@@ -109,6 +141,7 @@ extension DetailsViewController : UITableViewDelegate , UITableViewDataSource {
         
         return cell
     }
+    
     
     func cellHeightForRow() {
         tableview.rowHeight = UITableView.automaticDimension

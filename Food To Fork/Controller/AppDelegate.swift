@@ -5,7 +5,7 @@
 //  Created by IOS System on 8/21/19.
 //  Copyright © 2019 IOS Systems. All rights reserved.
 //
-
+import RealmSwift
 import UIKit
 
 @UIApplicationMain
@@ -15,7 +15,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
+        
+        do {
+            _ = try Realm()
+        } catch  {
+            print(error)
+        }
+        
+        
+        
         return true
     }
 

@@ -6,9 +6,10 @@ target 'Food To Fork' do
 
   # Pods for Food To Fork
 
-pod'SwiftyJSON'
-pod'Alamofire'
+pod 'SwiftyJSON'
+pod 'Alamofire'
 pod 'SDWebImage'
+pod 'RealmSwift'
 pod "ESTabBarController-swift"
 
 end

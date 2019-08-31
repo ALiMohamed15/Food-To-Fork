@@ -11,7 +11,7 @@ import Alamofire
 import SwiftyJSON
 
 struct Requests {
-    static let Key = "4cd4e08966ac79cf56877ab950cc62b4"
+    static let Key = "c34e5bd22e22eb9b4250014a38dbb85d"
     static let SearchUrl = "https://www.food2fork.com/api/search"
     static let GetUrl = "https://www.food2fork.com/api/get"
     static let sharedInstance = Requests()
@@ -26,7 +26,8 @@ struct Requests {
                 Completion(json)
                 
             }else{
-                print("Request failed \(String(describing: response.result.error))")
+                    print("Request failed \(String(describing: response.result.error))")
+                
             }
         }
     }

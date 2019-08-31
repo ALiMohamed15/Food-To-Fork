@@ -30,7 +30,7 @@ class ViewController: UIViewController {
     var prams : [String : String] = [:]
     var q = ""
     var items = [CELLLLL]()
-    var JSOn = JSON()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
        
@@ -38,31 +38,17 @@ class ViewController: UIViewController {
 
         setUpNib()
         makeRequest()
-        dataError()
+        delayFunction()
     }
+    
+   
+    
     // MARK : Request Data From API Method
     func makeRequest(){
         prams = ["key" : Requests.Key , "q" : q ]
         Requests.sharedInstance.getData(withURL: Requests.SearchUrl, parameters: prams) { (JSON) in
             self.UpdateData(with: JSON)
-        }
-    }
-    func dataError() {
-        if TableView.numberOfRows(inSection: 0) == 0 {
-            let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-            let image = UIImageView(frame: CGRect(x: view.frame.width / 2 - 100 , y: view.frame.height / 2 - 100, width: 200 , height: 200))
-            image.image = UIImage(named: "connection error")
-            
-            let message = UILabel(frame: CGRect(x: view.frame.width/2 - 100
-                , y: view.frame.height/2 + 100, width: 200, height: 25))
-            message.text = "Connection Error"
-            message.textColor = .red
-            message.textAlignment = .center
-            message.font = UIFont(name: "Futura-Bold", size: 20)
-            
-            view.addSubview(image)
-            view.addSubview(message)
-            self.view.addSubview(view)
+            self.dataError()
         }
     }
     
@@ -78,7 +64,44 @@ class ViewController: UIViewController {
         items = [CELLLLL.init(titleArray: titles, imageURLArray: images, puplisherArray: puplisher, rid: recipiesID)]
         
         TableView.reloadData()
+        
     }
+    
+    //MARK : Delay Other Functions
+    func delayFunction()  {
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4.0, execute: {
+            self.dataError()
+        })
+    }
+    
+    // MARK : Display error Screen method
+    func dataError() {
+        let errorView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        if TableView.numberOfRows(inSection: 0) == 0 {
+            errorView.tag = 100
+            errorView.backgroundColor = .white
+            let image = UIImageView(frame: CGRect(x: errorView.frame.width / 2 - 100 , y: errorView.frame.height / 2 - 100, width: 200 , height: 200))
+            image.image = UIImage(named: "connection error")
+            
+            let message = UILabel(frame: CGRect(x: errorView.frame.width/2 - 100
+                , y: errorView.frame.height/2 + 100, width: 200, height: 25))
+            message.text = "Connection Error"
+            message.textColor = .red
+            message.textAlignment = .center
+            message.font = UIFont(name: "Futura-Bold", size: 20)
+            
+            errorView.addSubview(image)
+            errorView.addSubview(message)
+            self.view.addSubview(errorView)
+        }
+        else{
+            if let viewWithTag = self.view.viewWithTag(100) {
+                viewWithTag.removeFromSuperview()
+            }
+        }
+    }
+    
 }
 
 
