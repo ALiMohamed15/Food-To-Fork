@@ -14,11 +14,14 @@
 		81263ECD230D9BDF003E5207 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81263ECC230D9BDF003E5207 /* Assets.xcassets */; };
 		81263ED0230D9BDF003E5207 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81263ECE230D9BDF003E5207 /* LaunchScreen.storyboard */; };
 		815ED7BD2311EAF4002EA82B /* RequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815ED7BC2311EAF4002EA82B /* RequestModel.swift */; };
+		816C78B1231BDD93007735DB /* FavDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816C78B0231BDD93007735DB /* FavDetailsVC.swift */; };
 		818D5AB42310FB690094C977 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818D5AB22310FB690094C977 /* TableViewCell.swift */; };
 		818D5AB52310FB690094C977 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 818D5AB32310FB690094C977 /* TableViewCell.xib */; };
 		8198C3CA230F6F5C0031FDF0 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8198C3C9230F6F5C0031FDF0 /* DetailsViewController.swift */; };
 		81BD5E40231A825400B8A1E3 /* SaveDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BD5E3F231A825400B8A1E3 /* SaveDataModel.swift */; };
 		81BD5E42231A96F100B8A1E3 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BD5E41231A96F100B8A1E3 /* StartView.swift */; };
+		81BD5E44231AA79300B8A1E3 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BD5E43231AA79300B8A1E3 /* FavoritesView.swift */; };
+		81BD5E46231AA7B200B8A1E3 /* FavCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BD5E45231AA7B200B8A1E3 /* FavCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,11 +34,14 @@
 		81263ECF230D9BDF003E5207 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		81263ED1230D9BDF003E5207 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		815ED7BC2311EAF4002EA82B /* RequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestModel.swift; sourceTree = "<group>"; };
+		816C78B0231BDD93007735DB /* FavDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavDetailsVC.swift; sourceTree = "<group>"; };
 		818D5AB22310FB690094C977 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		818D5AB32310FB690094C977 /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		8198C3C9230F6F5C0031FDF0 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		81BD5E3F231A825400B8A1E3 /* SaveDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveDataModel.swift; sourceTree = "<group>"; };
 		81BD5E41231A96F100B8A1E3 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		81BD5E43231AA79300B8A1E3 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
+		81BD5E45231AA7B200B8A1E3 /* FavCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavCell.swift; sourceTree = "<group>"; };
 		A59EAD68157A43CD48BD2E4B /* Pods-Food To Fork.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Food To Fork.debug.xcconfig"; path = "Target Support Files/Pods-Food To Fork/Pods-Food To Fork.debug.xcconfig"; sourceTree = "<group>"; };
 		EFAAD6A3700C3F39FD06C7ED /* Pods-Food To Fork.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Food To Fork.release.xcconfig"; path = "Target Support Files/Pods-Food To Fork/Pods-Food To Fork.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -94,10 +100,13 @@
 			isa = PBXGroup;
 			children = (
 				81263EC5230D9BD7003E5207 /* AppDelegate.swift */,
-				818D5AB22310FB690094C977 /* TableViewCell.swift */,
+				81BD5E41231A96F100B8A1E3 /* StartView.swift */,
 				81263EC7230D9BD7003E5207 /* ViewController.swift */,
 				8198C3C9230F6F5C0031FDF0 /* DetailsViewController.swift */,
-				81BD5E41231A96F100B8A1E3 /* StartView.swift */,
+				81BD5E43231AA79300B8A1E3 /* FavoritesView.swift */,
+				816C78B0231BDD93007735DB /* FavDetailsVC.swift */,
+				818D5AB22310FB690094C977 /* TableViewCell.swift */,
+				81BD5E45231AA7B200B8A1E3 /* FavCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -247,9 +256,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				818D5AB42310FB690094C977 /* TableViewCell.swift in Sources */,
+				816C78B1231BDD93007735DB /* FavDetailsVC.swift in Sources */,
+				81BD5E46231AA7B200B8A1E3 /* FavCell.swift in Sources */,
 				815ED7BD2311EAF4002EA82B /* RequestModel.swift in Sources */,
 				81BD5E40231A825400B8A1E3 /* SaveDataModel.swift in Sources */,
 				81263EC8230D9BD7003E5207 /* ViewController.swift in Sources */,
+				81BD5E44231AA79300B8A1E3 /* FavoritesView.swift in Sources */,
 				81263EC6230D9BD7003E5207 /* AppDelegate.swift in Sources */,
 				8198C3CA230F6F5C0031FDF0 /* DetailsViewController.swift in Sources */,
 				81BD5E42231A96F100B8A1E3 /* StartView.swift in Sources */,
