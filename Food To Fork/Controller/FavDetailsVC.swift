@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RealmSwift
 import SDWebImage
 
 class FavDetailsVC: UIViewController {
@@ -20,11 +19,8 @@ class FavDetailsVC: UIViewController {
     var ttitle = ""
     var rank = ""
     var image = ""
-    var ingreds = List<String>()
     var ingredsArray = [String]()
     
-    
-    let realm = try! Realm()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,26 +28,27 @@ class FavDetailsVC: UIViewController {
         updateUI()
         stylingUI()
     }
-    
+    //    MARK: Update UI with data
     func updateUI() {
         Image.sd_setImage(with: URL(string: image), placeholderImage: UIImage(named: "Food Icon"))
         ranlkLBL.text = rank
         titleLBL.text = ttitle
+        navigationItem.title = title
     }
-
+    
+    //MARK: Styling Method
     func stylingUI(){
-        
         Image.layer.cornerRadius = 7
         ranlkLBL.layer.cornerRadius = 7
         
         ingredTableview.rowHeight = UITableView.automaticDimension
         ingredTableview.estimatedRowHeight = 60
-        
     }
     
 }
 
 
+//MARK: setup tableview
 extension FavDetailsVC: UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return ingredsArray.count
@@ -65,9 +62,5 @@ extension FavDetailsVC: UITableViewDelegate , UITableViewDataSource {
         
         return cell
     }
-    
-    
-    
-    
     
 }
